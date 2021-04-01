@@ -391,7 +391,9 @@ namespace VRP_Shortcut_Maker
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            Updater.AppName = "ShortcutMaker";
+            Updater.Repostory = "harryeffinpotter/Shortcut-Maker";
+            Updater.Update();
         }
 
         private void label7_Click(object sender, EventArgs e)
