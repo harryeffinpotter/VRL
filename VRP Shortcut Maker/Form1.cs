@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using System.Diagnostics;
 
 
+
 namespace VRP_Shortcut_Maker
 {
 
@@ -23,6 +24,7 @@ namespace VRP_Shortcut_Maker
         bool hasCustomLaunchExeSet = false;
         bool foundGame = false;
         bool hasGameSelected = false;
+        string SelectExe = "";
         string SelectExePath = "";
         string gamefoldername = "";
         string gamedir = "";
@@ -66,7 +68,8 @@ namespace VRP_Shortcut_Maker
                     foundGame = true;
                     gamedir = Path.GetDirectoryName(file);
                     gameDirTextBox.Text = file;
-                    SelectExePath = file; //Game full path is set here, WITH exe name. If not found, users must manually set this.
+                    SelectExePath = file;
+                    SelectExe = System.IO.Path.GetFileName(file); //Game full path is set here, WITH exe name. If not found, users must manually set this.
                     string box_msg = "Game EXE found!";
                     string box_title = "Game EXE found.";
                     MessageBox.Show(box_msg, box_title);
@@ -102,6 +105,7 @@ namespace VRP_Shortcut_Maker
                         gamedir = Path.GetDirectoryName(file2);
                         gameDirTextBox.Text = file2;
                         SelectExePath = file2; //Game full path is set here, WITH exe name. If not found, users must manually set this.
+                        SelectExe = System.IO.Path.GetFileName(file2);
                         string box_msg2 = "Game EXE found!";
                         string box_title2 = "Game EXE found.";
                         MessageBox.Show(box_msg2, box_title2);
@@ -135,6 +139,10 @@ namespace VRP_Shortcut_Maker
         private void runProgramButton_Click(object sender, EventArgs e)
         {
             string args = "";
+            foreach (string arg in argsRichTextBox.Text.Split('\n'))
+            {
+                args += $" {arg}";
+            }
             if (checkBox1.Checked)
             {
                 File.WriteAllText("tempSteam.txt", "-Steam -VR");
@@ -157,7 +165,7 @@ namespace VRP_Shortcut_Maker
             {
                 if (hasCustomLaunchExeSet)
                 {
-                    File.WriteAllText("customexe.txt", $"\"{CustomLaunchExe}\" \"{SelectExePath}\"{args}");
+                    File.WriteAllText("customexe.txt", $"\"{CustomLaunchExe}\" \"{SelectExe}\"{args}");
                     File.WriteAllText("filename.txt", filenoexe); //Complete exe title, to get icon from exe file for shortcut.
                     File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
                     File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
@@ -184,16 +192,13 @@ namespace VRP_Shortcut_Maker
                     /* Do what you want here, i'll just make the program make a file called temp.txt with the path and args
                      * probably you also want it to extract and run the powershell/batch you made/will make */
 
-                    foreach (string arg in argsRichTextBox.Text.Split('\n'))
-                    {
-                        args += $" {arg}";
-                    }
+
                     {
                         File.WriteAllText("filename.txt", filenoexe); //Complete exe title, to get icon from exe file for shortcut.
                         File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
-                        File.WriteAllText("temp3.txt", $"\"{SelectExePath}\"{args}"); //Selected path WITHOUT VD Streamer, for non Virtual Desktop users.
+                        File.WriteAllText("temp3.txt", $"\"{SelectExe}\"{args}"); //Selected exe WITHOUT VD Streamer, for non Virtual Desktop users.
                         File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
-                        File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExePath}\"{args}"); //Saved or Default VD path + args
+                        File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExe}\"{args}"); //Saved or Default VD path + args
                         BatProcess.StartInfo.FileName = "Script1.bat";
                         BatProcess.Start();
                         BatProcess.WaitForExit();
@@ -209,7 +214,7 @@ namespace VRP_Shortcut_Maker
                 {
 
                     File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
-                    File.WriteAllText("temp3.txt", $"\"{SelectExePath}\"{args}"); //Selected path WITHOUT VD Streamer, for non Virtual Desktop users.
+                    File.WriteAllText("temp3.txt", $"\"{SelectExe}\"{args}"); //Selected path WITHOUT VD Streamer, for non Virtual Desktop users.
                     File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
                     BatProcess.StartInfo.FileName = "Script2.bat";
                     BatProcess.Start();
@@ -236,6 +241,7 @@ namespace VRP_Shortcut_Maker
                 openFileDialog.InitialDirectory = gameDirTextBox.Text;
                 gameDirTextBox.Text = openFileDialog.FileName;
                 SelectExePath = openFileDialog.FileName;
+                SelectExe = System.IO.Path.GetFileName(openFileDialog.FileName);
                 hasGameSelected = true;
                 foundGame = true;
                 gamefoldername = Path.GetFileName(openFileDialog.FileName);
@@ -352,7 +358,7 @@ namespace VRP_Shortcut_Maker
 
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "Virtual Desktop | VirtualDesktop.Streamer.exe";
-            fileDialog.Title = "Select VD exe (Virtual.Desktop.Streamer.exe)";
+            fileDialog.Title = "Select VD exe (VirtualDesktop.Streamer.exe)";
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 Properties.Settings.Default.VDEXE = $"\"" + fileDialog.FileName + "\""; //If folder name chosen for custom streamer loc, it replaces setting here
