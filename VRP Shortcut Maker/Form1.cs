@@ -29,6 +29,7 @@ namespace VRP_Shortcut_Maker
         string gamefoldername = "";
         string gamedir = "";
         string filenoexe = "";
+        readonly string Airlink = "-oculus";
 
         private void selectGameButton_Click(object sender, EventArgs e)
 
@@ -161,10 +162,37 @@ namespace VRP_Shortcut_Maker
             Process BatProcess = new Process();
             BatProcess.StartInfo.CreateNoWindow = true;
             BatProcess.StartInfo.UseShellExecute = false;
+            if (AirCheckbox.Checked)
+            {
+                File.WriteAllText("occy.txt", Airlink + args); //Game directory, for "working directory" and "target path" usages.
+                File.WriteAllText("filename.txt", filenoexe); //Complete exe title, for shortcut name.
+                File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
+                File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
+                if (checkBox1.Checked) 
+                    BatProcess.StartInfo.FileName = "AirSteam.bat";
+                else
+                    BatProcess.StartInfo.FileName = "ScriptAir.bat";
+
+                    BatProcess.Start();
+                    BatProcess.WaitForExit();
+                    MessageBox.Show("Shortcut Successfully made!");
+                    return;
+
+              
+
+
+
+            }
+
             if (AgainstCheckbox.Checked)
             {
+
                 if (hasCustomLaunchExeSet)
+
+
+
                 {
+
                     File.WriteAllText("customexe.txt", $"\"{CustomLaunchExe}\" \"{SelectExe}\"{args}");
                     File.WriteAllText("filename.txt", filenoexe); //Complete exe title, to get icon from exe file for shortcut.
                     File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
@@ -276,6 +304,7 @@ namespace VRP_Shortcut_Maker
             File.Delete("customexe.txt");
             File.Delete("filename.txt");
             File.Delete("tempSteam.txt");
+            File.Delete("occy.txt");
         }
 
 
@@ -335,8 +364,8 @@ namespace VRP_Shortcut_Maker
                 hasCustomLaunchExeSet = false;
                 CreateVDCheckBox.Enabled = true;
             }
-            
-            }
+
+        }
 
         private void CustomNameCheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -396,10 +425,24 @@ namespace VRP_Shortcut_Maker
             Updater.Update();
         }
 
-        private void label7_Click(object sender, EventArgs e)
+
+        private void AirCheckbox_CheckedChanged(object sender, EventArgs e)
         {
+            if (AirCheckbox.Checked)
+            {
+                CreateVDCheckBox.Visible = false;
+                AgainstCheckbox.Enabled = false;
+                label10.Visible = false;
+                label8.Visible = false;
+                vdPathResetButton.Visible = false;
+                vdFolderButton.Visible = false;
+            }
+            if (!AirCheckbox.Checked)
+            {
+                CreateVDCheckBox.Visible = true;
+            }
+
 
         }
     }
-   
 }

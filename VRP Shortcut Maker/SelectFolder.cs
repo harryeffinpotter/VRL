@@ -39,6 +39,11 @@ namespace VRP_Shortcut_Maker
             return result.Result;
         }
 
+        internal void Show(Action resetText)
+        {
+            throw new NotImplementedException();
+        }
+
         private struct ShowDialogResult
         {
             public bool Result { get; set; }
