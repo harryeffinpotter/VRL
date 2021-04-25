@@ -7,7 +7,7 @@
     <ProjectGuid>{26709B8B-F3AD-4C67-93CC-31AC3162B112}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>VRP_Shortcut_Maker</RootNamespace>
-    <AssemblyName>VRP Shortcut Maker</AssemblyName>
+    <AssemblyName>VRP.Shortcut.Maker</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
