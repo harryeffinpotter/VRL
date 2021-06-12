@@ -25,15 +25,19 @@ namespace VRP_Shortcut_Maker
         bool foundGame = false;
         bool hasGameSelected = false;
         string SelectExe = "";
+        string gamefolderpath = "";
         string SelectExePath = "";
         string gamefoldername = "";
         string gamedir = "";
         string filenoexe = "";
-        readonly string Airlink = "-oculus";
-
+        readonly string Airlink = "-vrmode oculus -oculus -oculus vr";
+        readonly string Airlink2 = "-vrmode oculus -oculus -oculus vr -Steam -VR";
+        readonly string SteamVR = "-Steam -VR";
         private void selectGameButton_Click(object sender, EventArgs e)
 
         {
+            foundGame = false;
+            hasGameSelected = false;
             FolderSelectDialog folderSelectDialog = new FolderSelectDialog();
             folderSelectDialog.Title = "Select the game's main folder.";
             if (Properties.Settings.Default.LastDir.Length > 0)
@@ -43,6 +47,7 @@ namespace VRP_Shortcut_Maker
             {
 
                 gameDirTextBox.Text = folderSelectDialog.FileName;
+                gamefolderpath = folderSelectDialog.FileName;
                 Properties.Settings.Default.LastDir = folderSelectDialog.FileName;
                 Properties.Settings.Default.Save();//Game Directory for target/working dirs set here, can be replaced by manual select.
                 gamefoldername = Path.GetFileName(folderSelectDialog.FileName);
@@ -58,11 +63,13 @@ namespace VRP_Shortcut_Maker
             /* Message from rookie to harry - You might want to use the same folderselect which rookie uses, this one is weird
             af and doesn't let you do stuff like change directory easily if you have the path in your clipboard and the ui
             is too small and lacks a lot of other features */
+            if (Directory.Exists($"{folderSelectDialog.FileName}\\{gamefoldername}"))
+                gamefolderpath = $"{folderSelectDialog.FileName}\\{gamefoldername}";
 
             foreach (string file in Directory.EnumerateFiles(folderSelectDialog.FileName, "*.exe", SearchOption.AllDirectories))
             {
-                string filename = Path.GetFileName(file).ToLower(); //get filename from path and make it lower so it is case insensitive
-                if (filename.Contains("win64") && filename.Contains("shipping"))
+                string filename = Path.GetFileName(file); //get filename from path and make it lower so it is case insensitive
+                if (filename.Contains("-Win64-Shipping.exe"))
                 {
                     filenoexe = Path.GetFileNameWithoutExtension(file);
                     Console.WriteLine(file);
@@ -85,13 +92,14 @@ namespace VRP_Shortcut_Maker
                 //wrd is an array of game name parts
 
                 foreach (string file2 in Directory.EnumerateFiles(folderSelectDialog.FileName, "*.exe", SearchOption.AllDirectories))
+
                 {
                     string filename2 = Path.GetFileName(file2).ToLower(); //get filename from path and make it lower so it is case insensitive
 
                     bool gameNamePartFound = false;
                     foreach (string GameWrd in wrd)
-                    {
-                        if (filename2.Contains(GameWrd))
+                    { 
+                        if (filename2.Contains(GameWrd) && !filename2.Contains("unis") && !filename2.Contains("redist") && !filename2.Contains("unity") && !filename2.Contains("trial") && !filename2.Contains("dx"))
                         {
                             gameNamePartFound = true;
                             break;
@@ -111,7 +119,22 @@ namespace VRP_Shortcut_Maker
                         string box_title2 = "Game EXE found.";
                         MessageBox.Show(box_msg2, box_title2);
                         hasGameSelected = true;
-                        break;
+                        return;
+                    }
+                    else
+                    {
+                        filenoexe = Path.GetFileNameWithoutExtension(file2);
+                        Console.WriteLine(file2);
+                        foundGame = true;
+                        gamedir = Path.GetDirectoryName(file2);
+                        gameDirTextBox.Text = file2;
+                        SelectExePath = file2; //Game full path is set here, WITH exe name. If not found, users must manually set this.
+                        SelectExe = Path.GetFileName(file2);
+                        string box_msg2 = $"EXE Found:\n\n{Path.GetFileName(file2)}\n\nIf this is not the name of the game and/or\nan abbreviated/alternate version of the name,\nplease select the EXE manually!";
+                        string box_title2 = "EXE found...";
+                        MessageBox.Show(box_msg2, box_title2);
+                        hasGameSelected = true;
+                        return;
                     }
 
 
@@ -164,21 +187,21 @@ namespace VRP_Shortcut_Maker
             BatProcess.StartInfo.UseShellExecute = false;
             if (AirCheckbox.Checked)
             {
-                File.WriteAllText("occy.txt", Airlink + args); //Game directory, for "working directory" and "target path" usages.
+                if (AirCheckbox.Checked)
+                    File.WriteAllText("occy.txt", $"{Airlink}{args}"); //Game directory, for "working directory" and "target path" usages.
                 File.WriteAllText("filename.txt", filenoexe); //Complete exe title, for shortcut name.
                 File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
                 File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
-                if (checkBox1.Checked) 
-                    BatProcess.StartInfo.FileName = "AirSteam.bat";
-                else
-                    BatProcess.StartInfo.FileName = "ScriptAir.bat";
+                BatProcess.StartInfo.FileName = "ScriptAir.bat";
+                BatProcess.Start();
+                BatProcess.WaitForExit();
+                BatProcess.StartInfo.FileName = "SteamVR.bat";
+                BatProcess.Start();
+                BatProcess.WaitForExit();
+                MessageBox.Show("Shortcut Successfully made!");
+                return;
 
-                    BatProcess.Start();
-                    BatProcess.WaitForExit();
-                    MessageBox.Show("Shortcut Successfully made!");
-                    return;
 
-              
 
 
 
@@ -226,7 +249,10 @@ namespace VRP_Shortcut_Maker
                         File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
                         File.WriteAllText("temp3.txt", $"\"{SelectExe}\"{args}"); //Selected exe WITHOUT VD Streamer, for non Virtual Desktop users.
                         File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
-                        File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExe}\"{args}"); //Saved or Default VD path + args
+                        if (args.Contains("-"))
+                            File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExe}\"{args} -vrmode oculus -oculus -oculus vr");
+                        else
+                            File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExe}\" -vrmode oculus -oculus -oculus vr"); //Saved or Default VD path + args
                         BatProcess.StartInfo.FileName = "Script1.bat";
                         BatProcess.Start();
                         BatProcess.WaitForExit();
@@ -238,13 +264,12 @@ namespace VRP_Shortcut_Maker
 
                     }
                 }
-                if (!CreateVDCheckBox.Checked)
+                if (checkBox1.Checked)
                 {
-
                     File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
                     File.WriteAllText("temp3.txt", $"\"{SelectExe}\"{args}"); //Selected path WITHOUT VD Streamer, for non Virtual Desktop users.
                     File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
-                    BatProcess.StartInfo.FileName = "Script2.bat";
+                    BatProcess.StartInfo.FileName = "ScriptLink.bat";
                     BatProcess.Start();
                     BatProcess.WaitForExit();
                     MessageBox.Show("Shortcut Successfully made!");
@@ -313,6 +338,7 @@ namespace VRP_Shortcut_Maker
         {
             if (CreateVDCheckBox.Checked)
             {
+                AirCheckbox.Enabled = false;
                 AgainstCheckbox.Enabled = false;
                 label10.Visible = true;
                 label8.Visible = true;
@@ -322,6 +348,7 @@ namespace VRP_Shortcut_Maker
             }
             if (!CreateVDCheckBox.Checked)
             {
+                AirCheckbox.Enabled = true;
                 AgainstCheckbox.Enabled = true;
                 label10.Visible = false;
                 label8.Visible = false;
@@ -398,31 +425,12 @@ namespace VRP_Shortcut_Maker
 
         }
 
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Updater.AppName = "ShortcutMaker";
-            Updater.Repostory = "harryeffinpotter/Shortcut-Maker";
-            Updater.Update();
+           // Updater.AppName = "ShortcutMaker";
+           // Updater.Repostory = "harryeffinpotter/Shortcut-Maker";
+            // Updater.Update();
         }
 
 
@@ -430,19 +438,35 @@ namespace VRP_Shortcut_Maker
         {
             if (AirCheckbox.Checked)
             {
-                CreateVDCheckBox.Visible = false;
+                CreateVDCheckBox.Enabled = false;
                 AgainstCheckbox.Enabled = false;
                 label10.Visible = false;
                 label8.Visible = false;
                 vdPathResetButton.Visible = false;
                 vdFolderButton.Visible = false;
+                checkBox1.Enabled = false;
+
             }
             if (!AirCheckbox.Checked)
             {
-                CreateVDCheckBox.Visible = true;
+                AgainstCheckbox.Enabled = true;
+                checkBox1.Enabled = true;
+                CreateVDCheckBox.Enabled = true;
             }
 
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                AirCheckbox.Enabled = false;
+            }
+            if (!checkBox1.Checked)
+            {
+                AirCheckbox.Enabled = true;
+            }
         }
     }
 }

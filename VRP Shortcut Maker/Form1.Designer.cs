@@ -60,18 +60,17 @@ namespace VRP_Shortcut_Maker
             // 
             // selectGameButton
             // 
-            this.selectGameButton.AutoEllipsis = true;
             this.selectGameButton.BackColor = System.Drawing.Color.White;
             this.selectGameButton.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.selectGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectGameButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectGameButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.selectGameButton.Location = new System.Drawing.Point(47, 122);
+            this.selectGameButton.Location = new System.Drawing.Point(43, 122);
             this.selectGameButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectGameButton.Name = "selectGameButton";
-            this.selectGameButton.Size = new System.Drawing.Size(187, 23);
+            this.selectGameButton.Size = new System.Drawing.Size(194, 23);
             this.selectGameButton.TabIndex = 1;
-            this.selectGameButton.Text = "Find Game Exe";
+            this.selectGameButton.Text = "Search for Shipping/Game exe";
             this.selectGameButton.UseVisualStyleBackColor = false;
             this.selectGameButton.Click += new System.EventHandler(this.selectGameButton_Click);
             // 
@@ -142,7 +141,7 @@ namespace VRP_Shortcut_Maker
             this.label4.Size = new System.Drawing.Size(162, 20);
             this.label4.TabIndex = 6;
             this.label4.Text = "Custom Arguments";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
@@ -156,6 +155,7 @@ namespace VRP_Shortcut_Maker
             this.label5.Size = new System.Drawing.Size(250, 15);
             this.label5.TabIndex = 6;
             this.label5.Text = "(Not required, one per line, e.g., -NoWindow)";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // runProgramButton
             // 
@@ -178,7 +178,7 @@ namespace VRP_Shortcut_Maker
             this.vdFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vdFolderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vdFolderButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.vdFolderButton.Location = new System.Drawing.Point(145, 369);
+            this.vdFolderButton.Location = new System.Drawing.Point(145, 374);
             this.vdFolderButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.vdFolderButton.Name = "vdFolderButton";
             this.vdFolderButton.Size = new System.Drawing.Size(69, 26);
@@ -194,14 +194,13 @@ namespace VRP_Shortcut_Maker
             this.selectExeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectExeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.selectExeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.selectExeButton.Location = new System.Drawing.Point(47, 150);
+            this.selectExeButton.Location = new System.Drawing.Point(43, 150);
             this.selectExeButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.selectExeButton.Name = "selectExeButton";
-            this.selectExeButton.Size = new System.Drawing.Size(187, 23);
+            this.selectExeButton.Size = new System.Drawing.Size(194, 23);
             this.selectExeButton.TabIndex = 2;
             this.selectExeButton.Text = "Manually Select Game Exe";
             this.selectExeButton.UseVisualStyleBackColor = false;
-            this.selectExeButton.Visible = false;
             this.selectExeButton.Click += new System.EventHandler(this.selectExeButton_Click);
             // 
             // argsRichTextBox
@@ -219,7 +218,7 @@ namespace VRP_Shortcut_Maker
             this.vdPathResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vdPathResetButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.vdPathResetButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.vdPathResetButton.Location = new System.Drawing.Point(66, 369);
+            this.vdPathResetButton.Location = new System.Drawing.Point(66, 374);
             this.vdPathResetButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.vdPathResetButton.Name = "vdPathResetButton";
             this.vdPathResetButton.Size = new System.Drawing.Size(65, 25);
@@ -238,7 +237,7 @@ namespace VRP_Shortcut_Maker
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Bold);
             this.label10.ForeColor = System.Drawing.Color.Cyan;
             this.label10.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label10.Location = new System.Drawing.Point(59, 334);
+            this.label10.Location = new System.Drawing.Point(59, 336);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(163, 16);
@@ -246,7 +245,6 @@ namespace VRP_Shortcut_Maker
             this.label10.Text = "VD Streamer install dir";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label10.Visible = false;
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label11
             // 
@@ -254,7 +252,7 @@ namespace VRP_Shortcut_Maker
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label11.Location = new System.Drawing.Point(140, 136);
+            this.label11.Location = new System.Drawing.Point(141, 136);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(0, 15);
@@ -267,12 +265,12 @@ namespace VRP_Shortcut_Maker
             this.label14.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold);
             this.label14.ForeColor = System.Drawing.Color.PaleTurquoise;
-            this.label14.Location = new System.Drawing.Point(243, 1);
+            this.label14.Location = new System.Drawing.Point(230, 1);
             this.label14.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(38, 24);
+            this.label14.Size = new System.Drawing.Size(55, 24);
             this.label14.TabIndex = 2;
-            this.label14.Text = "1.3";
+            this.label14.Text = "1.4.1";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label15
@@ -281,7 +279,7 @@ namespace VRP_Shortcut_Maker
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Thistle;
-            this.label15.Location = new System.Drawing.Point(1, 21);
+            this.label15.Location = new System.Drawing.Point(44, 21);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(106, 13);
@@ -297,8 +295,9 @@ namespace VRP_Shortcut_Maker
             this.AgainstCheckbox.Location = new System.Drawing.Point(23, 180);
             this.AgainstCheckbox.Name = "AgainstCheckbox";
             this.AgainstCheckbox.Size = new System.Drawing.Size(235, 17);
-            this.AgainstCheckbox.TabIndex = 16;
+            this.AgainstCheckbox.TabIndex = 3;
             this.AgainstCheckbox.Text = "(Advanced users) custom launch exe";
+            this.AgainstCheckbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.AgainstCheckbox.UseVisualStyleBackColor = false;
             this.AgainstCheckbox.CheckedChanged += new System.EventHandler(this.AgainstCheckbox_CheckedChanged);
             // 
@@ -308,11 +307,12 @@ namespace VRP_Shortcut_Maker
             this.CustomNameCheckBox.BackColor = System.Drawing.Color.Transparent;
             this.CustomNameCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CustomNameCheckBox.ForeColor = System.Drawing.Color.White;
-            this.CustomNameCheckBox.Location = new System.Drawing.Point(23, 561);
+            this.CustomNameCheckBox.Location = new System.Drawing.Point(32, 561);
             this.CustomNameCheckBox.Name = "CustomNameCheckBox";
             this.CustomNameCheckBox.Size = new System.Drawing.Size(234, 20);
             this.CustomNameCheckBox.TabIndex = 7;
             this.CustomNameCheckBox.Text = "Enter custom name(Optional)  ";
+            this.CustomNameCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CustomNameCheckBox.UseVisualStyleBackColor = false;
             this.CustomNameCheckBox.CheckedChanged += new System.EventHandler(this.CustomNameCheckBox_CheckedChanged);
             // 
@@ -327,7 +327,7 @@ namespace VRP_Shortcut_Maker
             this.label6.Size = new System.Drawing.Size(145, 20);
             this.label6.TabIndex = 18;
             this.label6.Text = "Optional settings";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // customNameTextBox
             // 
@@ -344,11 +344,12 @@ namespace VRP_Shortcut_Maker
             this.CreateVDCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::VRP_Shortcut_Maker.Properties.Settings.Default, "VDChecked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.CreateVDCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.CreateVDCheckBox.ForeColor = System.Drawing.Color.White;
-            this.CreateVDCheckBox.Location = new System.Drawing.Point(24, 301);
+            this.CreateVDCheckBox.Location = new System.Drawing.Point(21, 312);
             this.CreateVDCheckBox.Name = "CreateVDCheckBox";
             this.CreateVDCheckBox.Size = new System.Drawing.Size(233, 21);
             this.CreateVDCheckBox.TabIndex = 5;
             this.CreateVDCheckBox.Text = "Virtual Desktop compatibility";
+            this.CreateVDCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CreateVDCheckBox.UseVisualStyleBackColor = false;
             this.CreateVDCheckBox.CheckedChanged += new System.EventHandler(this.CreateVDCheckBox_CheckedChanged);
             // 
@@ -361,7 +362,7 @@ namespace VRP_Shortcut_Maker
             this.CustomLaunchExeButton.Location = new System.Drawing.Point(103, 202);
             this.CustomLaunchExeButton.Name = "CustomLaunchExeButton";
             this.CustomLaunchExeButton.Size = new System.Drawing.Size(75, 23);
-            this.CustomLaunchExeButton.TabIndex = 21;
+            this.CustomLaunchExeButton.TabIndex = 4;
             this.CustomLaunchExeButton.Text = "Set exe";
             this.CustomLaunchExeButton.UseVisualStyleBackColor = false;
             this.CustomLaunchExeButton.Visible = false;
@@ -373,11 +374,12 @@ namespace VRP_Shortcut_Maker
             this.checkBox1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.checkBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.checkBox1.Location = new System.Drawing.Point(24, 283);
+            this.checkBox1.Location = new System.Drawing.Point(21, 289);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(245, 21);
-            this.checkBox1.TabIndex = 4;
-            this.checkBox1.Text = "Standard SteamVR arguments";
+            this.checkBox1.Size = new System.Drawing.Size(111, 21);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "Non Oculus";
+            this.checkBox1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.checkBox1.UseVisualStyleBackColor = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -387,14 +389,14 @@ namespace VRP_Shortcut_Maker
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Thistle;
-            this.label8.Location = new System.Drawing.Point(44, 350);
+            this.label8.Location = new System.Drawing.Point(44, 353);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(192, 15);
             this.label8.TabIndex = 23;
             this.label8.Text = "(If not sure, leave as Default)";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label8.Visible = false;
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
@@ -403,13 +405,14 @@ namespace VRP_Shortcut_Maker
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.Thistle;
             this.label7.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label7.Location = new System.Drawing.Point(80, 245);
+            this.label7.Location = new System.Drawing.Point(80, 248);
             this.label7.MaximumSize = new System.Drawing.Size(120, 15);
             this.label7.MinimumSize = new System.Drawing.Size(120, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(120, 15);
             this.label7.TabIndex = 24;
             this.label7.Text = "(Settings persist!)";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AirCheckbox
             // 
@@ -417,11 +420,11 @@ namespace VRP_Shortcut_Maker
             this.AirCheckbox.BackColor = System.Drawing.Color.Transparent;
             this.AirCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
             this.AirCheckbox.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.AirCheckbox.Location = new System.Drawing.Point(24, 265);
+            this.AirCheckbox.Location = new System.Drawing.Point(21, 266);
             this.AirCheckbox.Name = "AirCheckbox";
-            this.AirCheckbox.Size = new System.Drawing.Size(177, 21);
-            this.AirCheckbox.TabIndex = 3;
-            this.AirCheckbox.Text = "Air Link compatibility";
+            this.AirCheckbox.Size = new System.Drawing.Size(127, 21);
+            this.AirCheckbox.TabIndex = 5;
+            this.AirCheckbox.Text = "Link or Airlink";
             this.AirCheckbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.AirCheckbox.UseVisualStyleBackColor = false;
             this.AirCheckbox.CheckedChanged += new System.EventHandler(this.AirCheckbox_CheckedChanged);
@@ -433,7 +436,7 @@ namespace VRP_Shortcut_Maker
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(9)))), ((int)(((byte)(9)))), ((int)(((byte)(9)))));
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(280, 670);
+            this.ClientSize = new System.Drawing.Size(280, 666);
             this.Controls.Add(this.AirCheckbox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
@@ -461,8 +464,8 @@ namespace VRP_Shortcut_Maker
             this.Controls.Add(this.gameDirTextBox);
             this.Controls.Add(this.selectGameButton);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MaximumSize = new System.Drawing.Size(296, 709);
-            this.MinimumSize = new System.Drawing.Size(296, 709);
+            this.MaximumSize = new System.Drawing.Size(296, 705);
+            this.MinimumSize = new System.Drawing.Size(296, 705);
             this.Name = "Form1";
             this.Text = "VRLauncher";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);

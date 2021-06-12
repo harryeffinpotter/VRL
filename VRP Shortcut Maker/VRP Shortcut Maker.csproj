@@ -7,7 +7,7 @@
     <ProjectGuid>{26709B8B-F3AD-4C67-93CC-31AC3162B112}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>VRP_Shortcut_Maker</RootNamespace>
-    <AssemblyName>VRP.Shortcut.Maker</AssemblyName>
+    <AssemblyName>VRPShortcutMaker</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -72,7 +72,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectFolder.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="Updater.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

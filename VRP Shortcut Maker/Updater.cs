@@ -28,7 +28,7 @@ namespace VRP_Shortcut_Maker
         private static string RawGitHubUrl;
         private static string GitHubUrl;
 
-        static readonly public string LocalVersion = "1.3";
+        static readonly public string LocalVersion = "1.3.1";
         public static string currentVersion = string.Empty;
         public static string changelog = string.Empty;
 
