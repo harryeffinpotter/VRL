@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace VRP_Shortcut_Maker
+namespace VRL
 {
     static class Program
     {

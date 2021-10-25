@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace VRP_Shortcut_Maker
+namespace VRL
 {
 
     /// <summary>

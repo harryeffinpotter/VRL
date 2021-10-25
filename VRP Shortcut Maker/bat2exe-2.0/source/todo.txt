@@ -1,0 +1,4 @@
+- add option to use hidcon for hiding cmd
+- check brackets in folder/file name and other chracters
+- Test Network Path \\
+- Languages Translation

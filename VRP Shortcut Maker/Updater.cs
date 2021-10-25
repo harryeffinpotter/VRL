@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.IO;
 
 
-namespace VRP_Shortcut_Maker
+namespace VRL
 {
     class Updater
     {

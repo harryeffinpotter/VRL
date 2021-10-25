@@ -8,12 +8,12 @@ set /p gamedir=<GDir.txt
 set /p gamename=<gname.txt
 set /p steamargs=<tempSteam.txt
 
-cd %gamedir%
-echo %fullpathVD% -steam -vr> "%gamedir%\%gamename%_VD_withSteamVR.bat"
+echo %fullpathVD% -steam -vr> ".\Temp\%gamename%(VD+Steam).bat"
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
-echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\%gamename%-VD-Steam(try this 2nd).lnk" >> CreateShortcut.vbs
+echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\%gamename%(VD+Steam).lnk" >> CreateShortcut.vbs
+echo sLinkFile2 = "%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Microsoft\Windows\Start Menu\\%gamename%(VD+Steam).lnk" >> CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> CreateShortcut.vbs
-echo oLink.TargetPath = "%gamedir%\%gamename%_VD_withSteamVR.bat" >> CreateShortcut.vbs
+echo oLink.TargetPath = "%gamedir%\%gamename%(VD+Steam).exe" >> CreateShortcut.vbs
 echo oLink.WorkingDirectory = "%gamedir%" >> CreateShortcut.vbs
 echo oLink.IconLocation = "%exepath%" >> CreateShortcut.vbs
 echo oLink.Save >> CreateShortcut.vbs
