@@ -28,7 +28,7 @@ namespace VRL
         private static string RawGitHubUrl;
         private static string GitHubUrl;
 
-        static readonly public string LocalVersion = "1.3.1";
+        static readonly public string LocalVersion = "2.0";
         public static string currentVersion = string.Empty;
         public static string changelog = string.Empty;
 
@@ -38,7 +38,8 @@ namespace VRL
             try
             {
                 currentVersion = client.GetStringAsync($"{RawGitHubUrl}/master/version").Result;
-                currentVersion = currentVersion.Remove(currentVersion.Length - 1);
+                currentVersion = currentVersion.Replace("\n", "");
+                currentVersion = currentVersion.Replace("\r", "");
                 changelog = client.GetStringAsync($"{RawGitHubUrl}/master/changelog.txt").Result;
             }
             catch { return false; }
@@ -46,14 +47,14 @@ namespace VRL
         }
         public static void Update()
         {
-            RawGitHubUrl = $"https://raw.githubusercontent.com/{Repostory}";
-            GitHubUrl = $"https://github.com/{Repostory}";
+            RawGitHubUrl = $"https://raw.githubusercontent.com/harryeffinpotter/Shortcut-Maker";
+            GitHubUrl = $"https://github.com/harryeffinpotter/Shortcut-Maker";
             if (IsUpdateAvailable())
                 doUpdate();
         }
         private static void doUpdate()
         {
-            DialogResult dialogResult = MessageBox.Show($"There is a new update you have version {LocalVersion}, do you want to update?\nCHANGELOG\n{changelog}", $"Version {currentVersion} is available", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show($"There is a new update, you have version {LocalVersion}, do you want to update?\nCHANGELOG\n{changelog}", $"Version {currentVersion} is available", MessageBoxButtons.YesNo);
             if (dialogResult != DialogResult.Yes)
                 return;
 

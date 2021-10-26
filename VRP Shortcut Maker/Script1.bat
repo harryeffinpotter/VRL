@@ -7,11 +7,11 @@ set /p gamedir=<gdir.txt
 set /p gamename=<gname.txt
 set /p filename=<filename.txt
 set /p steamargs=<tempSteam.txt
-
+set /p dis=<dis.txt
 
 echo %fullpathVD%> ".\Temp\%gamename%(VD).bat"
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
-echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\%gamename%(VD).lnk" >> CreateShortcut.vbs
+%dis%echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\%gamename%(VD).lnk" >> CreateShortcut.vbs
 echo sLinkFile2 = "%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Microsoft\Windows\Start Menu\%gamename%(VD).lnk" >> CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> CreateShortcut.vbs
 echo oLink.TargetPath = "%gamedir%\%gamename%(VD).exe" >> CreateShortcut.vbs

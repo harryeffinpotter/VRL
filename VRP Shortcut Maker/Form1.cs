@@ -1,10 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using System.Threading;
-using Microsoft.Win32;
-using System.Diagnostics;
 
 
 
@@ -42,8 +40,7 @@ namespace VRL
                 folderSelectDialog.InitialDirectory = Properties.Settings.Default.LastDir;
 
             if (folderSelectDialog.Show(Handle))
-            {
-                DesktopBox.Checked = Properties.Settings.Default.ExeDesktop;
+            { 
                 gameDirTextBox.Text = folderSelectDialog.FileName;
                 gamefolderpath = folderSelectDialog.FileName;
                 Properties.Settings.Default.LastDir = folderSelectDialog.FileName;
@@ -56,24 +53,19 @@ namespace VRL
                 MessageBox.Show("You must select a game folder!");
                 return;
             }
-            //Since .net 4 there is a recursive file search directly implemented in c#
-            //*.* means every file with any or no extension
-            /* Message from rookie to harry - You might want to use the same folderselect which rookie uses, this one is weird
-            af and doesn't let you do stuff like change directory easily if you have the path in your clipboard and the ui
-            is too small and lacks a lot of other features */
             if (Directory.Exists($"{folderSelectDialog.FileName}\\{gamefoldername}"))
                 gamefolderpath = $"{folderSelectDialog.FileName}\\{gamefoldername}";
 
             foreach (string folder in Directory.EnumerateDirectories(folderSelectDialog.FileName, "*_data", SearchOption.AllDirectories))
             {
-                string dataParent = Directory.GetParent(folder.TrimEnd(Path.DirectorySeparatorChar)).FullName;
-                foreach (string file in Directory.EnumerateFiles(dataParent, "*.exe", SearchOption.TopDirectoryOnly))
+                foreach (string file in Directory.EnumerateFiles(folderSelectDialog.FileName, "*.exe", SearchOption.TopDirectoryOnly))
                 {
                     string dironly = Path.GetDirectoryName(folder).ToLower();
-                    string filename = Path.GetFileName(file).ToLower();
-                    filename = filename.Replace(".exe", "");
+                    string filename = Path.GetFileNameWithoutExtension(file);
+                    filename = filename.ToLower();
                     string cutfolder = folder.Remove(folder.Length - 5);
-                    if (cutfolder.Contains(filename))
+                    cutfolder = folder.ToLower();
+                    if (folder.ToLower().Contains(filename))
                     {
                         SelectExe = Path.GetFileName(file);
                         gameDirTextBox.Text = SelectExe;
@@ -251,17 +243,19 @@ namespace VRL
         }
 
             private void runProgramButton_Click(object sender, EventArgs e)
-
-
-    { 
+            {
+ 
             string args = "";
+            if (Directory.Exists($"{currdir}\\Temp"))
+                Directory.Delete($"{currdir}\\Temp", true);
+            Directory.CreateDirectory($"{currdir}\\Temp");
+            string disabler = "";
+            if (Properties.Settings.Default.ExeDesktop)
+                disabler = "#";
+            File.WriteAllText("dis.txt", disabler);
             foreach (string arg in argsRichTextBox.Text.Split('\n'))
             {
                 args += $" {arg}";
-            }
-            if (ShowVDDIR.Checked)
-            {
-                File.WriteAllText("tempSteam.txt", "-Steam -VR");
             }
             if (!foundGame)
             {
@@ -272,6 +266,7 @@ namespace VRL
             {
                 gamefoldername = customNameTextBox.Text;
                 File.WriteAllText("gname.txt", gamefoldername);
+            
             }
             Process BatProcess = new Process();
             BatProcess.StartInfo.CreateNoWindow = true;
@@ -279,21 +274,13 @@ namespace VRL
             if (AirCheckbox.Checked)
             {
                 if (args.Contains("-"))
-                {
                     File.WriteAllText("nosteamoc.txt", $"\"{SelectExe}\" {Airlink} {args}");
-                }
-                     else
-                {
-                    File.WriteAllText("nosteamoc.txt", $"\"{SelectExe}\" {Airlink}");
-                }
-                if (args.Contains("-"))
-                {
-                    File.WriteAllText("steamoc.txt", $"\"{SelectExe}\" -Steam -VR {Airlink} {args}");
-                }
                 else
-                {
+                 File.WriteAllText("nosteamoc.txt", $"\"{SelectExe}\" {Airlink}");
+                if (args.Contains("-"))
+                    File.WriteAllText("steamoc.txt", $"\"{SelectExe}\" -Steam -VR {Airlink} {args}");
+                else
                     File.WriteAllText("steamoc.txt", $"\"{SelectExe}\" -Steam -VR {Airlink}");
-                }
 
                 File.WriteAllText("filename.txt", filenoexe); //Complete exe title, for shortcut name.
                 File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
@@ -314,12 +301,6 @@ namespace VRL
             if (CreateVDCheckBox.Checked)
             {
 
-
-                /* Do what you want here, i'll just make the program make a file called temp.txt with the path and args
-                 * probably you also want it to extract and run the powershell/batch you made/will make */
-
-
-
                 File.WriteAllText("filename.txt", filenoexe); //Complete exe title, to get icon from exe file for shortcut.
                 File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
                 File.WriteAllText("temp3.txt", $"\"{SelectExe}\"{args}"); //File name including extension.
@@ -328,11 +309,7 @@ namespace VRL
                     File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExe}\"{args} -vrmode oculus -oculus -oculus vr");
                 else
                     File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExe}\" -vrmode oculus -oculus -oculus vr"); //Saved or Default VD path + args
-                if (Directory.Exists($"{Environment.CurrentDirectory}\\Temp"))
-                {
-                    Directory.Delete($"{Environment.CurrentDirectory}\\Temp", true);
-                    Directory.CreateDirectory($"{Environment.CurrentDirectory}\\Temp");
-                }
+
                 BatProcess.StartInfo.FileName = "Script1.bat";
                 BatProcess.Start();
                 BatProcess.WaitForExit();
@@ -341,26 +318,18 @@ namespace VRL
                 BatProcess.Start();
                 BatProcess.WaitForExit();
                 Bat2Exe(SelectExePath);
-
-
-
-
-
             }
             if (NoOccy.Checked)
             {
-                File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
-                File.WriteAllText("temp3.txt", args); //Selected path WITHOUT VD Streamer, for non Virtual Desktop users.
+                if (args.Contains("-"))
+                    File.WriteAllText("temp2.txt", SelectExePath + " " + args); //Complete exe path, to get icon from exe file for shortcut.c
+                else
+                    File.WriteAllText("temp2.txt", SelectExePath);
                 File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
                 BatProcess.StartInfo.FileName = "NoLink.bat";
                 BatProcess.Start();
                 BatProcess.WaitForExit();
                 Bat2Exe(SelectExePath);
-                string temp = currdir + "\\Temp";
-                if (Directory.Exists($"{currdir}\\Temp"))
-                    Directory.Delete(temp, true);
-
-
             }
 
             MessageBox.Show("Shortcut Successfully made!");
@@ -370,16 +339,18 @@ namespace VRL
                 if (file.EndsWith(".txt"))
                 System.IO.File.Delete(file);
             }
+            gameDirTextBox.Clear();
+            TopLABEL.Text = "Select Game Directory:";
         }
         public static string targetdir = "";
         public static string bat = "";
+
 
         //we really should vc if you are going to do more c# stuff in the future, also try to name your stuff from forms, instead of button1 name it what it does
         //dont worry tho, you dont have any experience with coding so ur doing really great, and doing big stuff inc# is very hard
         //if you dont have any prior coding language
         public static string Bat2Exe(string newexe)
         {
-    
             IconPullClick(newexe);
             foreach (string file in Directory.EnumerateFiles($"{currdir}\\Temp", "*.bat", SearchOption.TopDirectoryOnly))
             {
@@ -394,17 +365,18 @@ namespace VRL
             BatProcess.Start();
             BatProcess.WaitForExit();
             foreach (string file in Directory.EnumerateFiles($"{currdir}\\Temp", "*.exe", SearchOption.TopDirectoryOnly))
-            {
-                if (!file.Contains("go.exe") && !file.Contains("VRL.exe"))
-                {
+            { 
                     string path = Path.GetDirectoryName(newexe);
                     string justfilename = Path.GetFileName(file);
                     string newfile = path + "\\" + justfilename;
                     if (File.Exists(newfile))
                         File.Delete(newfile);
                     File.Move(file, newfile);
-                }
+                
             }
+            if (Directory.Exists($"{currdir}\\Temp"))
+                Directory.Delete($"{currdir}\\Temp", true);
+            Directory.CreateDirectory($"{currdir}\\Temp");
             return newexe;
         }
         
@@ -458,6 +430,8 @@ namespace VRL
                 // Save it to disk, or do whatever you want with it.
                 if (File.Exists($"{currdir}\\Temp\\temp.ico"))
                     File.Delete($"{currdir}\\Temp\\temp.ico");
+                if (!Directory.Exists($"{currdir}\\Temp"))
+                    Directory.CreateDirectory($"{currdir}\\Temp");
                 using (FileStream stream = new FileStream($"{currdir}\\Temp\\temp.ico", FileMode.CreateNew))
                 {
                     theIcon.Save(stream);
@@ -494,7 +468,6 @@ namespace VRL
             {
                 customNameTextBox.Visible = true;
                 customname = true;
-
             }
             if (!CustomNameCheckBox.Checked)
             {
@@ -505,7 +478,6 @@ namespace VRL
 
         private void vdFolderButton_Click_1(object sender, EventArgs e)
         {
-
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "Virtual Desktop | VirtualDesktop.Streamer.exe";
             fileDialog.Title = "Select VD Streamer exe (VirtualDesktop.Streamer.exe)";
@@ -514,31 +486,28 @@ namespace VRL
                 Properties.Settings.Default.VDEXE = $"\"{fileDialog.FileName}\""; //If folder name chosen for custom streamer loc, it replaces setting here
                 Properties.Settings.Default.Save(); //and saves it to options file.
             }
-
-
-
         }
-
-
 
         private void Form1_Load(object sender, EventArgs e)
         {
             currdir = Environment.CurrentDirectory;
-           // Updater.AppName = "ShortcutMaker";
-           // Updater.Repostory = "harryeffinpotter/Shortcut-Maker";
-            // Updater.Update();
+           Updater.AppName = "VRL";
+           Updater.Repostory = "harryeffinpotter/Shortcut-Maker";
+           Updater.Update();
+            CreateVDCheckBox.Checked = Properties.Settings.Default.VDChecked;
+            AirCheckbox.Checked = Properties.Settings.Default.AirLink;
+            NoOccy.Checked = Properties.Settings.Default.NonOccy;
+            DesktopBox.Checked = Properties.Settings.Default.ExeDesktop;
         }
 
 
 
         private void AirCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.EXE2D = AirCheckbox.Checked;
+            Properties.Settings.Default.AirLink = AirCheckbox.Checked;
                 Properties.Settings.Default.Save();
-     
-
         }
-
+        
         private void DesktopBox_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.ExeDesktop = DesktopBox.Checked;
@@ -569,6 +538,35 @@ namespace VRL
         {
             Properties.Settings.Default.NonOccy = NoOccy.Checked;
             Properties.Settings.Default.Save();
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+        bool mouseDown;
+        System.Drawing.Point lastLocation;
+
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDown)
+            {
+                this.Location = new Point(
+                    (this.Location.X - lastLocation.X) + e.X, (this.Location.Y - lastLocation.Y) + e.Y);
+                this.Update();
+            }
+        }
+
+        private void Form1_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
         }
     }
 }

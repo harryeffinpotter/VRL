@@ -6,18 +6,18 @@ set /p gamedir=<gdir.txt
 set /p gamename=<gname.txt
 set /p filename=<filename.txt
 set /p steamargs=<tempSteam.txt
+set /p dis=<dis.txt
 
-cd %gamedir%
-echo "%exepath%" %args%>".\Temp\%gamename%(OtherHMDs).bat"
+echo %exepath%> ".\Temp\%gamename%(OtherHMDs).bat"
 echo Set oWS = WScript.CreateObject("WScript.Shell") > CreateShortcut.vbs
-echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\%gamename%(OtherHMDs).lnk" >> CreateShortcut.vbs
-echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Microsoft\Windows\Start Menu\%gamename%(OtherHMDs).lnk" >> CreateShortcut.vbs
+%dis%echo sLinkFile = "%HOMEDRIVE%%HOMEPATH%\Desktop\%gamename%(OtherHMDs).lnk" >> CreateShortcut.vbs
+echo sLinkFile2 = "%HOMEDRIVE%%HOMEPATH%\AppData\Roaming\Microsoft\Windows\Start Menu\%gamename%(OtherHMDs).lnk" >> CreateShortcut.vbs
 echo Set oLink = oWS.CreateShortcut(sLinkFile) >> CreateShortcut.vbs
 echo oLink.TargetPath = "%gamedir%\%gamename%(OtherHMDs).exe" >> CreateShortcut.vbs
 echo oLink.WorkingDirectory = "%gamedir%" >> CreateShortcut.vbs
 echo oLink.IconLocation = "%exepath%" >> CreateShortcut.vbs
 echo oLink.Save >> CreateShortcut.vbs
 
-cscript CreateShortcut.vbsc
+cscript CreateShortcut.vbs
 del CreateShortcut.vbs
 exit

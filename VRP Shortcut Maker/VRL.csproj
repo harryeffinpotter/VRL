@@ -10,7 +10,7 @@
     <AssemblyName>VRL</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
@@ -48,6 +48,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>VRL.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -65,6 +68,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="version" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +79,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectFolder.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="Updater.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,11 +117,6 @@
     <None Include="Script2.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Script3.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="ScriptAir.bat" />
-    <None Include="Temp\LinkNS.bat" />
     <None Include="VRL.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,20 +139,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\asdasd.png" />
-    <None Include="Resources\sdssss.jpg" />
-    <None Include="Resources\chrome_heQgoYUaGq.png" />
-    <None Include="Resources\chrome_qlSiiUFHir.png" />
-    <None Include="Resources\chrome_oIsVlCGytT.png" />
-    <None Include="Resources\chrome_2IOGEgMCqx.png" />
-    <None Include="Resources\chrome_SQXBuwOnxe.png" />
-    <None Include="Resources\chrome_hEadWc3yNs.png" />
     <Content Include="go.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="changelog.txt" />
     <Content Include="VRL.ico" />
-    <Content Include="VRL.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="Temp\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

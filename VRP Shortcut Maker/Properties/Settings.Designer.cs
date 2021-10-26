@@ -49,30 +49,6 @@ namespace VRL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string CustomChecked {
-            get {
-                return ((string)(this["CustomChecked"]));
-            }
-            set {
-                this["CustomChecked"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SteamVR {
-            get {
-                return ((bool)(this["SteamVR"]));
-            }
-            set {
-                this["SteamVR"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool VDChecked {
             get {
@@ -80,18 +56,6 @@ namespace VRL.Properties {
             }
             set {
                 this["VDChecked"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool B2E {
-            get {
-                return ((bool)(this["B2E"]));
-            }
-            set {
-                this["B2E"] = value;
             }
         }
         
@@ -109,25 +73,13 @@ namespace VRL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string fffffffffff {
-            get {
-                return ((string)(this["fffffffffff"]));
-            }
-            set {
-                this["fffffffffff"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool EXE2D {
+        public bool AirLink {
             get {
-                return ((bool)(this["EXE2D"]));
+                return ((bool)(this["AirLink"]));
             }
             set {
-                this["EXE2D"] = value;
+                this["AirLink"] = value;
             }
         }
         
@@ -140,18 +92,6 @@ namespace VRL.Properties {
             }
             set {
                 this["ExeDesktop"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool ExeStartMenu {
-            get {
-                return ((bool)(this["ExeStartMenu"]));
-            }
-            set {
-                this["ExeStartMenu"] = value;
             }
         }
     }
