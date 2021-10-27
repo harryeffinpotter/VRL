@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 
@@ -29,6 +30,15 @@ namespace VRL
         string gamedir = "";
         string filenoexe = "";
         readonly string Airlink = "-oculus -oculus vr -vrmode oculus";
+
+
+        public static string GetValidFileName(string fileName)
+        {
+            // remove any invalid character from the filename.
+            String ret = Regex.Replace(fileName.Trim(), "[^A-Za-z0-9_. ]+", "");
+            return ret.Replace(" ", String.Empty);
+        }
+
         private void selectGameButton_Click(object sender, EventArgs e)
 
         {
@@ -40,7 +50,7 @@ namespace VRL
                 folderSelectDialog.InitialDirectory = Properties.Settings.Default.LastDir;
 
             if (folderSelectDialog.Show(Handle))
-            { 
+            {
                 gameDirTextBox.Text = folderSelectDialog.FileName;
                 gamefolderpath = folderSelectDialog.FileName;
                 Properties.Settings.Default.LastDir = folderSelectDialog.FileName;
@@ -50,7 +60,6 @@ namespace VRL
             }
             else
             {
-                MessageBox.Show("You must select a game folder!");
                 return;
             }
             if (Directory.Exists($"{folderSelectDialog.FileName}\\{gamefoldername}"))
@@ -60,56 +69,58 @@ namespace VRL
             {
                 foreach (string file in Directory.EnumerateFiles(folderSelectDialog.FileName, "*.exe", SearchOption.TopDirectoryOnly))
                 {
-                    string dironly = Path.GetDirectoryName(folder).ToLower();
-                    string filename = Path.GetFileNameWithoutExtension(file);
-                    filename = filename.ToLower();
-                    string cutfolder = folder.Remove(folder.Length - 5);
-                    cutfolder = folder.ToLower();
-                    if (folder.ToLower().Contains(filename))
+                    if (!file.Contains("(VD)") && !file.Contains("(OtherHMDs)") && !file.Contains("(VD+Steam)") && !file.Contains("(Link)") && !file.Contains("(Link+Steam)"))
                     {
-                        SelectExe = Path.GetFileName(file);
-                        gameDirTextBox.Text = SelectExe;
-                        TopLABEL.Text = "Game Found!";
-                        filenoexe = Path.GetFileNameWithoutExtension(file);
-                        foundGame = true;
-                        gamedir = Path.GetDirectoryName(file);
-                        SelectExePath = file;
-                        hasGameSelected = true;
-                        break;
+                        string dironly = Path.GetDirectoryName(folder).ToLower();
+                        string filename = Path.GetFileNameWithoutExtension(file);
+                        filename = filename.ToLower();
+                        string cutfolder = folder.Remove(folder.Length - 5);
+                        cutfolder = folder.ToLower();
+                        if (folder.ToLower().Contains(filename))
+                        {
+                            SelectExe = Path.GetFileName(file);
+                            gameDirTextBox.Text = SelectExe;
+                            TopLABEL.Text = "Game Found!";
+                            filenoexe = Path.GetFileNameWithoutExtension(file);
+                            foundGame = true;
+                            gamedir = Path.GetDirectoryName(file);
+                            SelectExePath = file;
+                            hasGameSelected = true;
+                            break;
+                        }
+                        if (!foundGame)
+                            cutfolder = cutfolder.Replace(" ", "");
+
+
+                        if (filename.Contains(cutfolder))
+                        {
+                            SelectExe = Path.GetFileName(file);
+                            gameDirTextBox.Text = SelectExe;
+                            TopLABEL.Text = "Game Found!";
+                            filenoexe = Path.GetFileNameWithoutExtension(file);
+                            foundGame = true;
+                            gamedir = Path.GetDirectoryName(file);
+                            SelectExePath = file;
+                            hasGameSelected = true;
+                            break;
+                        }
+
+                        if (!foundGame)
+                            dironly = dironly.Substring(0, 1);
+
+                        if (filename.StartsWith(dironly))
+                        {
+                            SelectExe = Path.GetFileName(file);
+                            gameDirTextBox.Text = SelectExe;
+                            TopLABEL.Text = "Game Found!";
+                            filenoexe = Path.GetFileNameWithoutExtension(file);
+                            foundGame = true;
+                            gamedir = Path.GetDirectoryName(file);
+                            SelectExePath = file;
+                            hasGameSelected = true;
+                            break;
+                        }
                     }
-                    if (!foundGame)
-                        cutfolder = cutfolder.Replace(" ", "");
-
-
-                    if (filename.Contains(cutfolder))
-                    {
-                        SelectExe = Path.GetFileName(file);
-                        gameDirTextBox.Text = SelectExe;
-                        TopLABEL.Text = "Game Found!";
-                        filenoexe = Path.GetFileNameWithoutExtension(file);
-                        foundGame = true;
-                        gamedir = Path.GetDirectoryName(file);
-                        SelectExePath = file;
-                        hasGameSelected = true;
-                        break;
-                    }
-
-                    if (!foundGame)
-                        dironly = dironly.Substring(0, 1);
-
-                    if (filename.StartsWith(dironly))
-                    {
-                        SelectExe = Path.GetFileName(file);
-                        gameDirTextBox.Text = SelectExe;
-                        TopLABEL.Text = "Game Found!";
-                        filenoexe = Path.GetFileNameWithoutExtension(file);
-                        foundGame = true;
-                        gamedir = Path.GetDirectoryName(file);
-                        SelectExePath = file;
-                        hasGameSelected = true;
-                        break;
-                    }
-
                 }
             }
             if (!foundGame)
@@ -150,9 +161,10 @@ namespace VRL
                             hasGameSelected = true;
                             break;
                         }
-                        else if (filename.EndsWith(".exe") && !filename.Contains("unis") && !filename.Contains("UnityCrashHandler64.exe") && !filename.Contains("Crash.exe") &&
-                                    !filename.Contains("redist") && !filename.Contains("unity") && !filename.Contains("trial") && !filename.Contains("dx"))
-                        {
+                        else if (filename.EndsWith(".exe") && !filename.Contains("unis") && !filename.Contains("unityCrashhandler64.exe") && !filename.Contains("crash.exe") &&
+                                    !filename.Contains("redist") && !filename.Contains("unity") && !filename.Contains("trial") && !filename.Contains("dx") &&
+                                !filename.Contains("(vd)") && !filename.Contains("(otherhmds)") && !filename.Contains("(vd+steam)") && !filename.Contains("(link)") && !filename.Contains("(link+steam)"))
+                            {
                             SelectExe = Path.GetFileName(file);
                             gameDirTextBox.Text = SelectExe;
                             TopLABEL.Text = "Game Found!";
@@ -186,7 +198,7 @@ namespace VRL
                             }
                         }
 
-                        if (gameNamePartFound)
+                        if (gameNamePartFound && !file2.Contains("(VD)") && !file2.Contains("(OtherHMDs)") && !file2.Contains("(VD+Steam)") && !file2.Contains("(Link)") && !file2.Contains("(Link+Steam)"))
                         {
                             SelectExe = Path.GetFileName(file2);
                             gameDirTextBox.Text = SelectExe;
@@ -204,7 +216,7 @@ namespace VRL
                         dataParent = dataParent.Substring(0, 1).ToLower();
 
 
-                        if (filename2.StartsWith(dataParent))
+                        if (filename2.StartsWith(dataParent) && !filename2.Contains("(VD)") && !filename2.Contains("(OtherHMDs)") && !filename2.Contains("(VD+Steam)") && !filename2.Contains("(Link)") && !filename2.Contains("(Link+Steam)"))
                         {
                             SelectExe = Path.GetFileName(file2);
                             gameDirTextBox.Text = SelectExe;
@@ -228,30 +240,43 @@ namespace VRL
                             string box_title = "No EXE found.";
                             selectExeButton.Visible = true;
                             MessageBox.Show(box_msg, box_title);
-                            // IDEALLY - I'd like to GREY OUT the run program option and even the SELECT exe button UNTIL this moment, they must specify a game folder for 
+                            // IDEALLY - I'd like to GREY OUT the run program option and even the SELECT exe button UNTIL this moment, they must specify a game folder for
                             //2 reasons, 1. to search for shipping exe. 2. to give us the game name, sorking directories, all that stuch
                         }
 
                     }
+
                 }
-                /*  
+
+                if (foundGame)
+                {
+                    runProgramButton.Enabled = true;
+
+                }
+
+
+                /*
                     Here you should put the default path (in the variable)
                     Also you should do something with the settings so if user has it in custom path he doesnt have to press the button
                     every time he starts the program
                 */
             }
+
+
         }
 
-            private void runProgramButton_Click(object sender, EventArgs e)
+
+        void runProgramButton_Click(object sender, EventArgs e)
             {
- 
+            runProgramButton.Enabled = false;
+
             string args = "";
             if (Directory.Exists($"{currdir}\\Temp"))
                 Directory.Delete($"{currdir}\\Temp", true);
             Directory.CreateDirectory($"{currdir}\\Temp");
             string disabler = "";
             if (Properties.Settings.Default.ExeDesktop)
-                disabler = "#";
+                disabler = "goto :exit";
             File.WriteAllText("dis.txt", disabler);
             foreach (string arg in argsRichTextBox.Text.Split('\n'))
             {
@@ -266,7 +291,7 @@ namespace VRL
             {
                 gamefoldername = customNameTextBox.Text;
                 File.WriteAllText("gname.txt", gamefoldername);
-            
+
             }
             Process BatProcess = new Process();
             BatProcess.StartInfo.CreateNoWindow = true;
@@ -274,17 +299,17 @@ namespace VRL
             if (AirCheckbox.Checked)
             {
                 if (args.Contains("-"))
-                    File.WriteAllText("nosteamoc.txt", $"\"{SelectExe}\" {Airlink} {args}");
+                    File.WriteAllText("nosteamoc.txt", $"\"{SelectExePath}\" {Airlink} {args}");
                 else
-                 File.WriteAllText("nosteamoc.txt", $"\"{SelectExe}\" {Airlink}");
+                 File.WriteAllText("nosteamoc.txt", $"\"{SelectExePath}\" {Airlink}");
                 if (args.Contains("-"))
-                    File.WriteAllText("steamoc.txt", $"\"{SelectExe}\" -Steam -VR {Airlink} {args}");
+                    File.WriteAllText("steamoc.txt", $"\"{SelectExePath}\" -Steam -VR {Airlink} {args}");
                 else
-                    File.WriteAllText("steamoc.txt", $"\"{SelectExe}\" -Steam -VR {Airlink}");
+                    File.WriteAllText("steamoc.txt", $"\"{SelectExePath}\" -Steam -VR {Airlink}");
 
-                File.WriteAllText("filename.txt", filenoexe); //Complete exe title, for shortcut name.
-                File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
-                File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
+                File.WriteAllText("filename.txt",$"\"{filenoexe}\""); //Complete exe title, for shortcut name.
+                File.WriteAllText("temp2.txt", "\"{SelectExePath}\""); //Complete exe path, to get icon from exe file for shortcut.
+                File.WriteAllText("gdir.txt", "\"" + gamedir + "\""); //Game directory, for "working directory" and "target path" usages.
 
                 BatProcess.StartInfo.FileName = "LinkNS.bat";
                 BatProcess.Start();
@@ -296,19 +321,19 @@ namespace VRL
                 Bat2Exe(SelectExePath);
             }
 
-             
+
 
             if (CreateVDCheckBox.Checked)
             {
 
                 File.WriteAllText("filename.txt", filenoexe); //Complete exe title, to get icon from exe file for shortcut.
-                File.WriteAllText("temp2.txt", SelectExePath); //Complete exe path, to get icon from exe file for shortcut.
-                File.WriteAllText("temp3.txt", $"\"{SelectExe}\"{args}"); //File name including extension.
-                File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
+                File.WriteAllText("temp2.txt", $"\"{SelectExePath}\""); //Complete exe path, to get icon from exe file for shortcut.
+                File.WriteAllText("temp3.txt", $"\"{SelectExePath}\"{args}"); //File name including extension.
+                File.WriteAllText("gdir.txt", $"\"{gamedir}\""); //Game directory, for "working directory" and "target path" usages.
                 if (args.Contains("-"))
-                    File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExe}\"{args} -vrmode oculus -oculus -oculus vr");
+                    File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExePath}\"{args} -vrmode oculus -oculus -oculus vr");
                 else
-                    File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExe}\" -vrmode oculus -oculus -oculus vr"); //Saved or Default VD path + args
+                    File.WriteAllText("temp.txt", $"{Properties.Settings.Default.VDEXE} \"{SelectExePath}\" -vrmode oculus -oculus -oculus vr"); //Saved or Default VD path + args
 
                 BatProcess.StartInfo.FileName = "Script1.bat";
                 BatProcess.Start();
@@ -322,10 +347,11 @@ namespace VRL
             if (NoOccy.Checked)
             {
                 if (args.Contains("-"))
-                    File.WriteAllText("temp2.txt", SelectExePath + " " + args); //Complete exe path, to get icon from exe file for shortcut.c
+                    File.WriteAllText("temp1.txt", $"\"{SelectExePath}\"{args}"); //Complete exe path, to get icon from exe file for shortcut.c
                 else
-                    File.WriteAllText("temp2.txt", SelectExePath);
-                File.WriteAllText("gdir.txt", gamedir); //Game directory, for "working directory" and "target path" usages.
+                    File.WriteAllText("temp1.txt",$"\"{SelectExePath}\"");
+                    File.WriteAllText("temp2.txt", $"\"{SelectExePath}\"");
+                File.WriteAllText("gdir.txt", $"\"{gamedir}\""); //Game directory, for "working directory" and "target path" usages.
                 BatProcess.StartInfo.FileName = "NoLink.bat";
                 BatProcess.Start();
                 BatProcess.WaitForExit();
@@ -360,26 +386,27 @@ namespace VRL
             Process BatProcess = new Process();
             BatProcess.StartInfo.CreateNoWindow = true;
             BatProcess.StartInfo.UseShellExecute = false;
-            BatProcess.StartInfo.FileName = $"{currdir}\\go.exe";
-            BatProcess.StartInfo.Arguments = $"/bat \"{bat}\" /exe \"{currdir}\\Temp\\{batname}.exe\" /icon \"{Environment.CurrentDirectory}\\Temp\\temp.ico\"";
+            BatProcess.StartInfo.FileName = $"\"{currdir}\\go.exe\"";
+            BatProcess.StartInfo.Arguments = $"/bat \"{bat}\" /exe \"{currdir}\\Temp\\{batname}.exe\" /icon \"{Environment.CurrentDirectory}\\Temp\\temp.ico\" /overwrite";
             BatProcess.Start();
             BatProcess.WaitForExit();
             foreach (string file in Directory.EnumerateFiles($"{currdir}\\Temp", "*.exe", SearchOption.TopDirectoryOnly))
-            { 
+            {
+
                     string path = Path.GetDirectoryName(newexe);
                     string justfilename = Path.GetFileName(file);
-                    string newfile = path + "\\" + justfilename;
+                    string newfile =$"{currdir}\\My Launchers\\{justfilename}";
                     if (File.Exists(newfile))
                         File.Delete(newfile);
                     File.Move(file, newfile);
-                
+
             }
             if (Directory.Exists($"{currdir}\\Temp"))
                 Directory.Delete($"{currdir}\\Temp", true);
             Directory.CreateDirectory($"{currdir}\\Temp");
             return newexe;
         }
-        
+
         private void selectExeButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -397,7 +424,7 @@ namespace VRL
                 gamefoldername = Path.GetFileName(openFileDialog.FileName);
                 gameDirTextBox.Text = SelectExe;
                 File.WriteAllText("gname.txt", gamefoldername);
-           
+
 
                 //If game exe is selected, this will remove the Game.Exe from it and just leave us with the directory that contains it-
                 //which is ONCE AGAIN for target folder purposes.
@@ -490,6 +517,13 @@ namespace VRL
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Roaming\\Microsoft\\Windows\\Start Menu\\My Launchers"))
+          
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Roaming\\Microsoft\\Windows\\Start Menu\\My Launchers");
+            
+            if (!Directory.Exists($"{currdir}\\My Launchers"))
+                Directory.CreateDirectory($"{currdir}\\My Launchers");
             currdir = Environment.CurrentDirectory;
            Updater.AppName = "VRL";
            Updater.Repostory = "harryeffinpotter/Shortcut-Maker";
@@ -507,7 +541,7 @@ namespace VRL
             Properties.Settings.Default.AirLink = AirCheckbox.Checked;
                 Properties.Settings.Default.Save();
         }
-        
+
         private void DesktopBox_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.ExeDesktop = DesktopBox.Checked;
@@ -530,7 +564,7 @@ namespace VRL
                 vdFolderButton.Visible = false;
                 vdPathResetButton.Visible = false;
             }
-         
+
 
         }
 
@@ -567,6 +601,12 @@ namespace VRL
         private void Form1_MouseUp(object sender, MouseEventArgs e)
         {
             mouseDown = false;
+        }
+
+        private void gameDirTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (gameDirTextBox.Text.Length > 0)
+            runProgramButton.Enabled = true;
         }
     }
 }
