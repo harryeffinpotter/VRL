@@ -10,7 +10,7 @@
     <AssemblyName>VRL</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
@@ -59,7 +59,8 @@
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>VRL.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>653D9ADB9043EA06BB322E5223E9A509D6E5CCF4</ManifestCertificateThumbprint>
@@ -69,13 +70,13 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>false</GenerateManifests>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>false</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -89,6 +90,11 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -107,6 +113,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\app.manifest" />
+    <None Include="settings" />
     <None Include="version" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -132,15 +139,15 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <AdditionalFiles Include="LinkNS.bat">
+    <Content Include="LinkNS.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="LinkWS.bat">
+    </Content>
+    <Content Include="LinkWS.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="NoLink.bat">
+    </Content>
+    <Content Include="NoLink.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -150,14 +157,14 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <AdditionalFiles Include="Script1.bat">
+    <Content Include="Script1.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
-    <AdditionalFiles Include="Script2.bat">
+    </Content>
+    <Content Include="Script2.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AdditionalFiles>
+    </Content>
     <None Include="VRL.config" />
-    <None Include="VRL_TemporaryKey.pfx" />
+    <Content Include="VRL_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App.config">
@@ -180,14 +187,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="VRL.ico" />
-    <Content Include="VRLNEW.ico" />
-    <EmbeddedResource Include="go.exe">
+    <None Include="VRLNEW.ico" />
+    <None Include="go.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </None>
     <Content Include="changelog.txt" />
-    <Content Include="hnet.com-image.ico">
+    <None Include="hnet.com-image.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

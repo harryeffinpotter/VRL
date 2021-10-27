@@ -273,6 +273,7 @@ namespace VRL
             string args = "";
             if (Directory.Exists($"{currdir}\\Temp"))
                 Directory.Delete($"{currdir}\\Temp", true);
+            File.WriteAllText("currdir.txt", currdir);
             Directory.CreateDirectory($"{currdir}\\Temp");
             string disabler = "";
             if (Properties.Settings.Default.ExeDesktop)
@@ -518,9 +519,8 @@ namespace VRL
         private void Form1_Load(object sender, EventArgs e)
         {
 
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Roaming\\Microsoft\\Windows\\Start Menu\\My Launchers"))
-          
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Roaming\\Microsoft\\Windows\\Start Menu\\My Launchers");
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\My Launchers"))
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\My Launchers");
             
             if (!Directory.Exists($"{currdir}\\My Launchers"))
                 Directory.CreateDirectory($"{currdir}\\My Launchers");
