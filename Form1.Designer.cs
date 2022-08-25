@@ -49,11 +49,11 @@ namespace VRL
             this.TopLABEL = new System.Windows.Forms.Label();
             this.DesktopBox = new System.Windows.Forms.CheckBox();
             this.CreateVDCheckBox = new System.Windows.Forms.CheckBox();
-            this.NoOccy = new System.Windows.Forms.CheckBox();
             this.ShowVDDIR = new System.Windows.Forms.CheckBox();
             this.AirCheckbox = new System.Windows.Forms.CheckBox();
-            this.argsRichTextBox = new System.Windows.Forms.RichTextBox();
             this.closeButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.argsRichTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // selectGameButton
@@ -102,6 +102,7 @@ namespace VRL
             this.label1.TabIndex = 14;
             this.label1.Text = "VRL";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.label1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.label1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
@@ -114,7 +115,7 @@ namespace VRL
             this.label4.Font = new System.Drawing.Font("Trebuchet MS", 13F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label4.Location = new System.Drawing.Point(52, 323);
+            this.label4.Location = new System.Drawing.Point(5, 324);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(240, 23);
@@ -149,7 +150,7 @@ namespace VRL
             this.vdFolderButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vdFolderButton.Font = new System.Drawing.Font("Trebuchet MS", 10.75F, System.Drawing.FontStyle.Bold);
             this.vdFolderButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.vdFolderButton.Location = new System.Drawing.Point(175, 284);
+            this.vdFolderButton.Location = new System.Drawing.Point(174, 284);
             this.vdFolderButton.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.vdFolderButton.Name = "vdFolderButton";
             this.vdFolderButton.Size = new System.Drawing.Size(69, 26);
@@ -190,7 +191,7 @@ namespace VRL
             this.vdPathResetButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.vdPathResetButton.Font = new System.Drawing.Font("Trebuchet MS", 10.75F, System.Drawing.FontStyle.Bold);
             this.vdPathResetButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.vdPathResetButton.Location = new System.Drawing.Point(102, 284);
+            this.vdPathResetButton.Location = new System.Drawing.Point(101, 284);
             this.vdPathResetButton.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.vdPathResetButton.Name = "vdPathResetButton";
             this.vdPathResetButton.Size = new System.Drawing.Size(69, 26);
@@ -210,7 +211,7 @@ namespace VRL
             this.VDDIRLBL.Font = new System.Drawing.Font("Trebuchet MS", 13F, System.Drawing.FontStyle.Bold);
             this.VDDIRLBL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.VDDIRLBL.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.VDDIRLBL.Location = new System.Drawing.Point(42, 241);
+            this.VDDIRLBL.Location = new System.Drawing.Point(42, 240);
             this.VDDIRLBL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.VDDIRLBL.Name = "VDDIRLBL";
             this.VDDIRLBL.Size = new System.Drawing.Size(260, 23);
@@ -225,13 +226,13 @@ namespace VRL
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("LCD Solid", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label11.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label11.Location = new System.Drawing.Point(164, 76);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(0, 9);
+            this.label11.Size = new System.Drawing.Size(0, 13);
             this.label11.TabIndex = 12;
             // 
             // label14
@@ -246,7 +247,7 @@ namespace VRL
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(34, 22);
             this.label14.TabIndex = 2;
-            this.label14.Text = "2.0";
+            this.label14.Text = "2.1";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.label14.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
@@ -277,7 +278,7 @@ namespace VRL
             this.CustomNameCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CustomNameCheckBox.Font = new System.Drawing.Font("Trebuchet MS", 11F, System.Drawing.FontStyle.Bold);
             this.CustomNameCheckBox.ForeColor = System.Drawing.Color.White;
-            this.CustomNameCheckBox.Location = new System.Drawing.Point(14, 494);
+            this.CustomNameCheckBox.Location = new System.Drawing.Point(9, 494);
             this.CustomNameCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CustomNameCheckBox.Name = "CustomNameCheckBox";
             this.CustomNameCheckBox.Size = new System.Drawing.Size(126, 23);
@@ -292,10 +293,10 @@ namespace VRL
             this.customNameTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(3)))), ((int)(((byte)(11)))));
             this.customNameTextBox.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold);
             this.customNameTextBox.ForeColor = System.Drawing.Color.White;
-            this.customNameTextBox.Location = new System.Drawing.Point(142, 494);
+            this.customNameTextBox.Location = new System.Drawing.Point(129, 494);
             this.customNameTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.customNameTextBox.Name = "customNameTextBox";
-            this.customNameTextBox.Size = new System.Drawing.Size(189, 26);
+            this.customNameTextBox.Size = new System.Drawing.Size(206, 26);
             this.customNameTextBox.TabIndex = 7;
             this.customNameTextBox.Visible = false;
             // 
@@ -304,8 +305,8 @@ namespace VRL
             this.VDDIRLBL2.AutoSize = true;
             this.VDDIRLBL2.BackColor = System.Drawing.Color.Transparent;
             this.VDDIRLBL2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold);
-            this.VDDIRLBL2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
-            this.VDDIRLBL2.Location = new System.Drawing.Point(13, 265);
+            this.VDDIRLBL2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
+            this.VDDIRLBL2.Location = new System.Drawing.Point(13, 262);
             this.VDDIRLBL2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.VDDIRLBL2.Name = "VDDIRLBL2";
             this.VDDIRLBL2.Size = new System.Drawing.Size(319, 18);
@@ -325,7 +326,7 @@ namespace VRL
             this.label6.Font = new System.Drawing.Font("Trebuchet MS", 13F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.label6.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label6.Location = new System.Drawing.Point(89, 115);
+            this.label6.Location = new System.Drawing.Point(5, 113);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(167, 23);
@@ -342,13 +343,12 @@ namespace VRL
             this.TopLABEL.Font = new System.Drawing.Font("Trebuchet MS", 13F, System.Drawing.FontStyle.Bold);
             this.TopLABEL.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.TopLABEL.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.TopLABEL.Location = new System.Drawing.Point(16, 22);
+            this.TopLABEL.Location = new System.Drawing.Point(5, 22);
             this.TopLABEL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TopLABEL.Name = "TopLABEL";
-            this.TopLABEL.Size = new System.Drawing.Size(313, 24);
+            this.TopLABEL.Size = new System.Drawing.Size(326, 24);
             this.TopLABEL.TabIndex = 16;
             this.TopLABEL.Text = "Select Game Directory:";
-            this.TopLABEL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.TopLABEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.TopLABEL.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.TopLABEL.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
@@ -362,9 +362,9 @@ namespace VRL
             this.DesktopBox.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
             this.DesktopBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DesktopBox.Font = new System.Drawing.Font("Trebuchet MS", 10.5F, System.Drawing.FontStyle.Bold);
-            this.DesktopBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.DesktopBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.DesktopBox.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.DesktopBox.Location = new System.Drawing.Point(10, 183);
+            this.DesktopBox.Location = new System.Drawing.Point(9, 192);
             this.DesktopBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DesktopBox.Name = "DesktopBox";
             this.DesktopBox.Size = new System.Drawing.Size(224, 22);
@@ -386,7 +386,7 @@ namespace VRL
             this.CreateVDCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateVDCheckBox.Font = new System.Drawing.Font("Trebuchet MS", 10.5F, System.Drawing.FontStyle.Bold);
             this.CreateVDCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.CreateVDCheckBox.Location = new System.Drawing.Point(112, 150);
+            this.CreateVDCheckBox.Location = new System.Drawing.Point(109, 137);
             this.CreateVDCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CreateVDCheckBox.Name = "CreateVDCheckBox";
             this.CreateVDCheckBox.Size = new System.Drawing.Size(125, 22);
@@ -395,28 +395,6 @@ namespace VRL
             this.CreateVDCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.CreateVDCheckBox.UseVisualStyleBackColor = false;
             this.CreateVDCheckBox.CheckedChanged += new System.EventHandler(this.CreateVDCheckBox_CheckedChanged);
-            // 
-            // NoOccy
-            // 
-            this.NoOccy.AutoSize = true;
-            this.NoOccy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(3)))), ((int)(((byte)(11)))));
-            this.NoOccy.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed;
-            this.NoOccy.FlatAppearance.BorderSize = 0;
-            this.NoOccy.FlatAppearance.CheckedBackColor = System.Drawing.Color.DarkSlateGray;
-            this.NoOccy.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.NoOccy.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.NoOccy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.NoOccy.Font = new System.Drawing.Font("Trebuchet MS", 10.5F, System.Drawing.FontStyle.Bold);
-            this.NoOccy.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.NoOccy.Location = new System.Drawing.Point(239, 150);
-            this.NoOccy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.NoOccy.Name = "NoOccy";
-            this.NoOccy.Size = new System.Drawing.Size(96, 22);
-            this.NoOccy.TabIndex = 6;
-            this.NoOccy.Text = "Non Oculus";
-            this.NoOccy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.NoOccy.UseVisualStyleBackColor = false;
-            this.NoOccy.CheckedChanged += new System.EventHandler(this.NoOccy_CheckedChanged);
             // 
             // ShowVDDIR
             // 
@@ -427,9 +405,9 @@ namespace VRL
             this.ShowVDDIR.FlatAppearance.CheckedBackColor = System.Drawing.Color.Black;
             this.ShowVDDIR.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ShowVDDIR.Font = new System.Drawing.Font("Trebuchet MS", 10.5F, System.Drawing.FontStyle.Bold);
-            this.ShowVDDIR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.ShowVDDIR.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
             this.ShowVDDIR.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.ShowVDDIR.Location = new System.Drawing.Point(10, 205);
+            this.ShowVDDIR.Location = new System.Drawing.Point(9, 212);
             this.ShowVDDIR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ShowVDDIR.Name = "ShowVDDIR";
             this.ShowVDDIR.Size = new System.Drawing.Size(317, 22);
@@ -451,7 +429,7 @@ namespace VRL
             this.AirCheckbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AirCheckbox.Font = new System.Drawing.Font("Trebuchet MS", 10.5F, System.Drawing.FontStyle.Bold);
             this.AirCheckbox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(220)))), ((int)(((byte)(255)))));
-            this.AirCheckbox.Location = new System.Drawing.Point(10, 150);
+            this.AirCheckbox.Location = new System.Drawing.Point(9, 137);
             this.AirCheckbox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AirCheckbox.Name = "AirCheckbox";
             this.AirCheckbox.Size = new System.Drawing.Size(100, 22);
@@ -460,18 +438,6 @@ namespace VRL
             this.AirCheckbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.AirCheckbox.UseVisualStyleBackColor = false;
             this.AirCheckbox.CheckedChanged += new System.EventHandler(this.AirCheckbox_CheckedChanged);
-            // 
-            // argsRichTextBox
-            // 
-            this.argsRichTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(8)))));
-            this.argsRichTextBox.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold);
-            this.argsRichTextBox.ForeColor = System.Drawing.Color.White;
-            this.argsRichTextBox.Location = new System.Drawing.Point(9, 349);
-            this.argsRichTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.argsRichTextBox.Name = "argsRichTextBox";
-            this.argsRichTextBox.Size = new System.Drawing.Size(326, 141);
-            this.argsRichTextBox.TabIndex = 6;
-            this.argsRichTextBox.Text = "";
             // 
             // closeButton
             // 
@@ -487,15 +453,44 @@ namespace VRL
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Trebuchet MS", 13F, System.Drawing.FontStyle.Bold);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label2.Location = new System.Drawing.Point(5, 165);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 23);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Options:";
+            this.label2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
+            this.label2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.label2.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
+            // 
+            // argsRichTextBox
+            // 
+            this.argsRichTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(4)))), ((int)(((byte)(1)))), ((int)(((byte)(8)))));
+            this.argsRichTextBox.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold);
+            this.argsRichTextBox.ForeColor = System.Drawing.Color.White;
+            this.argsRichTextBox.Location = new System.Drawing.Point(9, 349);
+            this.argsRichTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.argsRichTextBox.Name = "argsRichTextBox";
+            this.argsRichTextBox.Size = new System.Drawing.Size(326, 141);
+            this.argsRichTextBox.TabIndex = 6;
+            this.argsRichTextBox.Text = "s";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 9F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(3)))), ((int)(((byte)(11)))));
             this.ClientSize = new System.Drawing.Size(345, 600);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.AirCheckbox);
-            this.Controls.Add(this.NoOccy);
             this.Controls.Add(this.VDDIRLBL2);
             this.Controls.Add(this.customNameTextBox);
             this.Controls.Add(this.CustomNameCheckBox);
@@ -511,13 +506,14 @@ namespace VRL
             this.Controls.Add(this.label4);
             this.Controls.Add(this.VDDIRLBL);
             this.Controls.Add(this.TopLABEL);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gameDirTextBox);
             this.Controls.Add(this.selectGameButton);
             this.Controls.Add(this.label15);
-            this.Font = new System.Drawing.Font("LCD Solid", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(255)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -558,11 +554,11 @@ namespace VRL
         public System.Windows.Forms.Label TopLABEL;
         private System.Windows.Forms.CheckBox DesktopBox;
         private System.Windows.Forms.CheckBox CreateVDCheckBox;
-        private System.Windows.Forms.CheckBox NoOccy;
         private System.Windows.Forms.CheckBox ShowVDDIR;
         private System.Windows.Forms.CheckBox AirCheckbox;
-        public System.Windows.Forms.RichTextBox argsRichTextBox;
         private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.RichTextBox argsRichTextBox;
     }
 }
 

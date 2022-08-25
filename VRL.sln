@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRL", "VRP Shortcut Maker\VRL.csproj", "{26709B8B-F3AD-4C67-93CC-31AC3162B112}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VRL", "VRL.csproj", "{26709B8B-F3AD-4C67-93CC-31AC3162B112}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
