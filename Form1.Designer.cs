@@ -169,11 +169,11 @@ namespace VRL
             this.selectExeButton.Font = new System.Drawing.Font("Trebuchet MS", 10.75F, System.Drawing.FontStyle.Bold);
             this.selectExeButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.selectExeButton.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.selectExeButton.Location = new System.Drawing.Point(115, 78);
+            this.selectExeButton.Location = new System.Drawing.Point(92, 78);
             this.selectExeButton.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.selectExeButton.Name = "selectExeButton";
             this.selectExeButton.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.selectExeButton.Size = new System.Drawing.Size(143, 26);
+            this.selectExeButton.Size = new System.Drawing.Size(166, 26);
             this.selectExeButton.TabIndex = 2;
             this.selectExeButton.Text = "Manually Select Exe";
             this.selectExeButton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -481,7 +481,7 @@ namespace VRL
             this.argsRichTextBox.Name = "argsRichTextBox";
             this.argsRichTextBox.Size = new System.Drawing.Size(326, 141);
             this.argsRichTextBox.TabIndex = 6;
-            this.argsRichTextBox.Text = "s";
+            this.argsRichTextBox.Text = "";
             // 
             // Form1
             // 

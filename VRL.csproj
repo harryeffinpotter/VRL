@@ -121,9 +121,6 @@
     </None>
     <None Include="Properties\app.manifest" />
     <None Include="settings" />
-    <None Include="VD.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="VDAS.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

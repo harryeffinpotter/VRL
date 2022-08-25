@@ -80,7 +80,7 @@ namespace VRL
             else
             {
                 FFARM = false;
-                FFARE = true;
+                FFARE = false;
             }
         }
 
@@ -105,7 +105,9 @@ namespace VRL
 
             if (folderSelectDialog.Show(Handle))
             {
-                gameDirTextBox.Text = folderSelectDialog.FileName;
+                selectExeButton.Enabled = true;
+                selectExeButton.Visible = true;
+                gameDirTextBox.Text = Path.GetFileName(folderSelectDialog.FileName);
                 gamefolderpath = folderSelectDialog.FileName;
                 Properties.Settings.Default.LastDir = folderSelectDialog.FileName;
                 Properties.Settings.Default.Save();//Game Directory for target/working dirs set here, can be replaced by manual select.
@@ -436,6 +438,8 @@ namespace VRL
             {
                 MessageBox.Show("Shortcut Successfully made!");
                 gameDirTextBox.Clear();
+                foundGame = false;
+
                 TopLABEL.Text = "Select Game Directory:";
                 if (File.Exists($"\"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Sac\\FilePath.txt\""))
                     File.Delete($"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\SAC\\FilePath.txt");
