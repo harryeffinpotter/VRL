@@ -83,7 +83,8 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>VRL_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>VRLNEW.ico</ApplicationIcon>
@@ -163,7 +164,6 @@
     <Content Include="inifile.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="VRL_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App.config">
