@@ -247,7 +247,7 @@ namespace VRL
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(34, 22);
             this.label14.TabIndex = 2;
-            this.label14.Text = "2.1";
+            this.label14.Text = "2.2";
             this.label14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.label14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.label14.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
