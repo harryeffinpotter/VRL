@@ -17,6 +17,7 @@ or use the B/Y button to right click on the shortcut then select Open, or simply
 
 **Once you've done all of this one of two things will happen.**
 - SteamVR will launch and open the PCVR application.
+  **- or -**
 - The PCVR application will launch natively.
 
 Either scenario preforms better than with Oculus Desktop app open. For some reason this also fixes a plethora of compatibility issues, such as games like The Walking Dead 
