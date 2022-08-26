@@ -12,7 +12,7 @@ Why? Because when you use VRL + VD it is possible to run PCVR titles WITHOUT eit
 4. Make the shortcuts.
 5. Exit SteamVR + Oculus app.
 6. Connect to your PC via Virtual Desktop
-7. Find the newly created shortcut (the one that has VD in the title), and either take set your headset down for a moment and double click the shortcut, 
+7. Find the newly created shortcut (the one that has VD in the title), and either set your headset down for a moment and double click the shortcut, 
 8. use the B/Y button to right click on the shortcut then select Open, or simply double click with the Touch controller trigger.
 
 **Once you've done all of this one of two things will happen.**
