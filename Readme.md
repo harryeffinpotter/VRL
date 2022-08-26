@@ -1,4 +1,4 @@
-# VRL - VR Launchers
+# VRL - VR Launcher
 ## A utility for PCVR users.
 
 VRL is ESPECIALLY useful for those of us who have an Oculus Quest 1/2 + the paid [Virtual Desktop app by Guy Godin](https://github.com/guygodin/VirtualDesktop).
