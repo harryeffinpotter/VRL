@@ -22,7 +22,7 @@ or use the B/Y button to right click on the shortcut then select Open, or simply
   
 - The PCVR application will launch natively.
 
-Either scenario preforms better than with Oculus Desktop app open. For some reason this also fixes a plethora of compatibility issues, such as games like The Walking Dead 
+Either scenario preforms better than with the Oculus Desktop app open. For some reason this also fixes a plethora of compatibility issues, such as games like The Walking Dead 
 only loading with Vive Wands for whatever reason, VRL fixes this. I use VRL for all of the games I own just beacuse it seems to be far more consistent at getting
 games to launch in the headset and not in 2d. It just works, I don't know the exact science behind it, but it works. I did ask Guy Godin himself why this method works
 so well a few years ago and he alluded to the fact that Oculus forces him to attatch their runtimes to any exe launched via VD, even with the Inject feature. I don't
