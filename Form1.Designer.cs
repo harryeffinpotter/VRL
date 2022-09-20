@@ -64,7 +64,7 @@ namespace VRL
             this.selectGameButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectGameButton.Font = new System.Drawing.Font("Trebuchet MS", 10.75F, System.Drawing.FontStyle.Bold);
             this.selectGameButton.ForeColor = System.Drawing.Color.Black;
-            this.selectGameButton.Location = new System.Drawing.Point(262, 78);
+            this.selectGameButton.Location = new System.Drawing.Point(261, 78);
             this.selectGameButton.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
             this.selectGameButton.Name = "selectGameButton";
             this.selectGameButton.Size = new System.Drawing.Size(73, 26);
