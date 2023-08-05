@@ -46,7 +46,7 @@ namespace VRL
             parameters.OutputAssembly = Output;
             CompilerResults results = icc.CompileAssemblyFromSource(parameters, source);
 
-            if (results.Errors.Count > 0
+            if (results.Errors.Count > 0)
             {
                 textBox2.ForeColor = Color.Red;
                 foreach (CompilerError CompErr in results.Errors)
