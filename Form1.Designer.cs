@@ -331,12 +331,13 @@ namespace VRL
             this.TopLABEL.Font = new System.Drawing.Font("Trebuchet MS", 13F, System.Drawing.FontStyle.Bold);
             this.TopLABEL.ForeColor = System.Drawing.Color.White;
             this.TopLABEL.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.TopLABEL.Location = new System.Drawing.Point(79, 22);
+            this.TopLABEL.Location = new System.Drawing.Point(0, 22);
             this.TopLABEL.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.TopLABEL.Name = "TopLABEL";
-            this.TopLABEL.Size = new System.Drawing.Size(252, 24);
+            this.TopLABEL.Size = new System.Drawing.Size(347, 24);
             this.TopLABEL.TabIndex = 16;
             this.TopLABEL.Text = "Select Game Directory";
+            this.TopLABEL.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.TopLABEL.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
             this.TopLABEL.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
             this.TopLABEL.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseUp);
@@ -374,7 +375,7 @@ namespace VRL
             this.CreateVDCheckBox.Location = new System.Drawing.Point(174, 137);
             this.CreateVDCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.CreateVDCheckBox.Name = "CreateVDCheckBox";
-            this.CreateVDCheckBox.Size = new System.Drawing.Size(125, 22);
+            this.CreateVDCheckBox.Size = new System.Drawing.Size(129, 22);
             this.CreateVDCheckBox.TabIndex = 5;
             this.CreateVDCheckBox.Text = "Virtual Desktop";
             this.CreateVDCheckBox.UseVisualStyleBackColor = false;
